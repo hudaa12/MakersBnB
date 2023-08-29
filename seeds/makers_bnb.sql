@@ -50,9 +50,9 @@ INSERT INTO users (email, password) VALUES ('user_1@makers.com', '123453455555!'
 INSERT INTO users (email, password) VALUES ('user_2@makers.com', '678944676787@');
 INSERT INTO users (email, password) VALUES ('user_3@makers.com', 'abcdef222222$');
 
-INSERT INTO spaces (name, description, price, avail_from, avail_to, user_id) VALUES ('House_1', 'nice house', 150.00, '01/01/2023', '01/10/2023', 1);
-INSERT INTO spaces (name, description, price, avail_from, avail_to, user_id) VALUES ('House_2', 'nice pool', 250.00, '01/04/2023', '01/09/2023', 2);
-INSERT INTO spaces (name, description, price, avail_from, avail_to, user_id) VALUES ('House_3', 'nice garden', 350.00, '01/06/2023', '01/11/2023', 3);
+INSERT INTO spaces (name, description, price, avail_from, avail_to, user_id) VALUES ('House_1', 'nice house', 150.00, '2023/01/01', '2023/10/01', 1);
+INSERT INTO spaces (name, description, price, avail_from, avail_to, user_id) VALUES ('House_2', 'nice pool', 250.00, '2023/04/01', '2023/09/01', 2);
+INSERT INTO spaces (name, description, price, avail_from, avail_to, user_id) VALUES ('House_3', 'nice garden', 350.00, '2023/06/01', '2023/11/01', 3);
 
 INSERT INTO bookings (booking_date, confirmed, booked_by, space_id) VALUES ('2023-07-10', True, 3, 1);
 INSERT INTO bookings (booking_date, confirmed, booked_by, space_id) VALUES ('2023-08-15', True, 2, 2);
