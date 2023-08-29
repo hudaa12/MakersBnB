@@ -38,7 +38,6 @@ CREATE TABLE bookings (
   booked_by int,
   booking_date date,
   confirmed boolean,
-  booked_by int,
   constraint fk_spaces foreign key(space_id) references spaces(id) on delete cascade,
   constraint fk_user foreign key(booked_by) references users(id) on delete cascade,
   PRIMARY KEY (space_id, booked_by)
