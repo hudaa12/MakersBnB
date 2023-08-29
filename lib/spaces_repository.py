@@ -1,0 +1,2 @@
+class SpacesRepository:
+    pass
