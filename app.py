@@ -29,7 +29,7 @@ def get_login():
 
 @app.route('/login', methods=['POST'])
 def post_login():
-    session["name"] = request.form.get("User name")
+    session["email"] = request.form.get("email")
     return redirect("/spaces")
 
 @app.route("/logout")
