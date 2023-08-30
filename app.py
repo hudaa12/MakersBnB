@@ -32,7 +32,7 @@ def get_index():
 
 @app.route('/space', methods=['GET'])
 def get_space():
-    return render_template('index_space.html')
+    return render_template('space.html')
 
 
 @app.route('/space', methods=['POST'])
@@ -50,7 +50,7 @@ def list_space():
                   available_from, available_to, user_id)
     repository.create(space)
 
-    return render_template('index_space.html')
+    return render_template('space.html')
 
 
 @app.route('/login', methods=['GET'])
