@@ -9,8 +9,8 @@ def test_get_all_spaces(db_connection):
     spaces = repository.all()
     assert spaces == [
         Space(1,'House_1', 'nice house', 150.00, date(2023,1,1), date(2023,10,1), 1),
-        Space(2,'House_2', 'nice pool', 250.00, date(2023,4,1),date(2023,9,1), 2),
-        Space(3,'House_3', 'nice garden', 350.00,date(2023,6,1), date(2023,11,1), 3)
+        Space(2,'House_2', 'nice pool', 250.00, date(2023,4,1), date(2023,9,1), 2),
+        Space(3,'House_3', 'nice garden', 350.00, date(2023,6,1), date(2023,11,1), 3)
     ]
 def test_create_a_space(db_connection):
     db_connection.seed('seeds/makers_bnb.sql')
