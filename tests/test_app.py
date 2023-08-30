@@ -16,3 +16,7 @@ def test_get_index(page, test_web_address):
 
     # We assert that it has the text "This is the homepage."
     expect(h1_tag).to_have_text("Feel at home, anywhere")
+
+"""
+We can viewa list of spaces
+"""

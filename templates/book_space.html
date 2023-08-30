@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MakersBnB</title>
+
+    <!-- <link rel="stylesheet" href="/static/style.css" > -->
+  </head>
+  <body>
+    <h1>Book a Space</h1>
+    <h2>Escape to anywhere, anytime on Makers BnB</h2>
+    <div class="nav">
+      <a href="/spaces" class="button">Spaces</a>
+      <a href="/requests" class="button">Requests</a>
+      <a href="/signout" class="button">Sign out</a>
+    </div>
+    <div class="book_space">
+        <a href="/spaces/new" class="button">List a Space</a>
+    </div>
+    {% for space in spaces %}
+
+    <div class="list_of_spaces">
+        <h2>
+            <a href="/spaces/{{spaces.id}}">{{spaces.name}}{{spaces.description}}</a>
+        </h2>
+    </div>
+  </body>
+</html>
