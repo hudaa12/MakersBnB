@@ -35,8 +35,16 @@ def get_space():
     return render_template('space.html')
 
 
+@app.route('/spaces', methods=['GET'])
+def get_spaces():
+    connection = get_flask_database_connection(app)
+    repository = SpaceRepository(connection)
+    spaces = repository.all()
+    return render_template('spaces.html', spaces=spaces)
+
+
 @app.route('/space', methods=['POST'])
-def list_space():
+def post_space():
     connection = get_flask_database_connection(app)
     repository = SpaceRepository(connection)
     name = request.form['space_name']
@@ -45,11 +53,9 @@ def list_space():
     available_from = request.form['available_from']
     available_to = request.form['available_to']
     user_id = request.form['user_id']
-
     space = Space(None, name, description, price,
-                  available_from, available_to, user_id)
+                available_from, available_to, user_id)
     repository.create(space)
-
     return render_template('space.html')
 
 
@@ -71,10 +77,9 @@ def logout():
 
 
 @app.route('/index', methods=['POST'])
-def new_user_created():
+def post_user():
     connection = get_flask_database_connection(app)
     repository = UserRepository(connection)
-
     email = request.form['email']
     password = request.form['password']
     user = User(None, email, password)
@@ -83,12 +88,7 @@ def new_user_created():
     return render_template('/index.html')
 
 
-@app.route('/spaces', methods=['GET'])
-def view_spaces():
-    connection = get_flask_database_connection(app)
-    repository = SpaceRepository(connection)
-    spaces = repository.all()
-    return render_template('book_space.html', spaces=spaces)
+
 
 
 # These lines start the server if you run this file directly

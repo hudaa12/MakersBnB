@@ -18,11 +18,11 @@
     </div>
     {% for space in spaces %}
     <div class="list_of_spaces">
-      <h2>
+      <h3>
         <a href="/spaces/{{ space.id }}"
           >{{ space.name }} {{ space.description }} {{space.price}}</a
         >
-      </h2>
+      </h3>
     </div>
     {% endfor %}
   </body>
