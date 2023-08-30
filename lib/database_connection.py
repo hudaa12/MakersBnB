@@ -1,6 +1,6 @@
 import os
 import psycopg
-from flask import g
+from flask import get_flask_database_connection
 from psycopg.rows import dict_row
 
 
