@@ -19,8 +19,6 @@ Session(app)
 
 @app.route('/index', methods=['GET'])
 def get_index():
-    if not session.get("name"):
-        return redirect("/login")
     return render_template('index.html')
 
 @app.route('/login', methods=['GET'])
