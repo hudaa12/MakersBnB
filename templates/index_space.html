@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <!-- <link rel="stylesheet" href="/static/style.css" > -->
+    
+    <title>List a Space | MakerBnB</title>
+</head>
+
+<body>
+<div class="nav">
+    <a href="/spaces" class="button">Spaces</a> 
+    <a href="/requests" class="button">Requests</a>
+    <a href="/sign_out" class="button">Sign Out</a>
+</div>
+<h1>List a Space</h1>
+
+<form action="/space" method="POST">
+
+    <label>Name:</label>
+    <input type="text" name="space_name" id="name">
+      <br>
+      <label>Description:</label>
+      <br>
+    <textarea name="description" id="description" rows="6" cols="40"></textarea>
+      <br>
+    
+      <label>Price per night(£):</label>
+      <input type="text" name="price" id="price">
+       <br>
+      <label>Available from(YYYY-MM-DD):</label>
+      <input type="text" name="available_from" id="available_from">
+     <br>
+      <label>Available to(YYYY-MM-DD):</label>
+      <input type="text" name="available_to" value="available_to">
+
+      <label>User ID</label>
+      <input type="text" name="user_id" id="user_id">
+    
+      <br>
+  
+      <p><input type="submit" value="ListMySpace" class="button" /></p>
+  
+  
+</form>
+    
+</body>
+</html>
