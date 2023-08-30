@@ -31,8 +31,8 @@ CREATE TABLE spaces (
   price float,
   avail_from date,
   avail_to date,
-  user_id int
-  constraint fk user_id foreign key(user_id) references users(id) on delete cascade
+  user_id int,
+  constraint fk_user_id foreign key(user_id) references users(id) on delete cascade
 );
 
 CREATE SEQUENCE IF NOT EXISTS bookings_id_seq;
@@ -41,9 +41,9 @@ CREATE TABLE bookings (
   booking_date date,
   confirmed boolean,
   booked_by int,
-  space_id int
-  constraint fk booked_by foreign key(booked_by) references users(id) on delete cascade,
-  constraint fk space_id foreign key(space_id) references spaces(id) on delete cascade
+  space_id int,
+  constraint fk_booked_by foreign key(booked_by) references users(id) on delete cascade,
+  constraint fk_space_id foreign key(space_id) references spaces(id) on delete cascade
 );
 
 -- Maybe booking total price?!
