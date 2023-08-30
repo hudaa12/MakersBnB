@@ -1,9 +1,14 @@
 import os
 from flask import Flask, request, render_template, redirect, session
 from lib.database_connection import get_flask_database_connection
+
+from lib.space import Space
+from lib.spaces_repository import SpacesRepository
+
 from flask_session import Session
 from lib.users_repository import UsersRepository
 from lib.users import Users
+
 
 
 # Create a new Flask app
@@ -23,6 +28,27 @@ Session(app)
 @app.route('/', methods=['GET'])
 def get_index():
     return render_template('index.html')
+
+
+@app.route('/space', methods=['GET'])
+def get_space():
+    return render_template('index_space.html')
+
+@app.route('/space', methods=['POST'])
+def list_space():
+    connection = get_flask_database_connection(app)
+    repository = SpacesRepository(connection) 
+    name = request.form['space_name']
+    description = request.form['description']
+    price = request.form['price']
+    available_from = request.form['available_from']
+    available_to = request.form['available_to']
+    user_id = request.form['user_id']
+
+    space = Space(None, name, description, price, available_from, available_to, user_id) 
+    repository.create(space)
+
+    return render_template('index_space.html')
 
 @app.route('/login', methods=['GET'])
 def get_login():
@@ -50,6 +76,7 @@ def new_user_created():
     repository.new_user_created(user)
 
     return render_template('/index.html')
+
 
 
 # These lines start the server if you run this file directly
