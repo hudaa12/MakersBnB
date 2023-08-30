@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MakersBnB</title>
+    <title>Login to MakersBnB</title>
 
     <!-- <link rel="stylesheet" href="/static/style.css" > -->
   </head>
   <body>
-    <h1>Feel at home, anywhere</h1>
-    <h2>Escape to anywhere, anytime on Makers BnB</h2>
     <div class="nav">
       <a href="/about" class="button">About</a>
-      <a href="/users/sessions/login" class="button">Login</a>
     </div>
-    <div class="signup_box">
-      <h2>Sign up to Makers BnB</h2>
-      <form action="/index" method="POST">
+    <div class="signin_box">
+      <h1>Log in to Makers BnB</h1>
+      <form action="/spaces" method="POST">
         <h3>
           <label for="email">Email Address</label><br />
           <input type="text" name="email" id="email" />
@@ -25,7 +22,7 @@
           <input type="text" name="password" id="password" />
         </h3>
 
-        <p><input type="submit" value="Signup" class="button" /></p>
+        <p><input type="submit" value="Log in" class="button" /></p>
       </form>
     </div>
   </body>
