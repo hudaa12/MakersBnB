@@ -2,6 +2,9 @@ import os
 from flask import Flask, request, render_template, redirect, session
 from lib.database_connection import get_flask_database_connection
 from flask_session import Session
+from lib.users_repository import UsersRepository
+from lib.users import Users
+
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -17,7 +20,7 @@ Session(app)
 #   ; open http://localhost:5000/index
 
 
-@app.route('/index', methods=['GET'])
+@app.route('/', methods=['GET'])
 def get_index():
     if not session.get("name"):
         return redirect("/login")
@@ -36,6 +39,19 @@ def post_login():
 def logout():
     session["name"] = None
     return redirect("index.html")
+
+
+@app.route('/index', methods=['POST'])
+def new_user_created():
+    connection = get_flask_database_connection(app)
+    repository = UsersRepository(connection)
+
+    email = request.form['email']
+    password = request.form['password']
+    user = Users(None, email, password)
+    repository.new_user_created(user)
+
+    return render_template('/index.html')
 
 
 # These lines start the server if you run this file directly
