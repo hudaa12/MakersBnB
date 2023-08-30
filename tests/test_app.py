@@ -7,7 +7,7 @@ We can render the index page
 """
 def test_get_index(page, test_web_address):
     # We load a virtual browser and navigate to the /index page
-    page.goto(f"http://{test_web_address}/index")
+    page.goto(f"http://{test_web_address}/")
 
     # We look at the <h1> tag
     h1_tag = page.locator("h1")
@@ -36,7 +36,7 @@ def test_get_login(page, test_web_address):
 
 def test_get_space(page, test_web_address):
     # We load a virtual browser and navigate to the /index page
-    page.goto(f"http://{test_web_address}/index_space")
+    page.goto(f"http://{test_web_address}/space")
 
     # We look at the <h1> tag
     h1_tag = page.locator("h1")
