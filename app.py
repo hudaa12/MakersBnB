@@ -3,12 +3,12 @@ from flask import Flask, request, render_template, redirect, session
 from lib.database_connection import get_flask_database_connection
 
 from lib.space import Space
-from lib.spaces_repository import SpacesRepository
+from lib.space_repository import SpaceRepository
 
 from flask_session import Session
-from lib.users_repository import UsersRepository
-from lib.users import Users
-from lib.spaces_repository import SpacesRepository
+from lib.user_repository import UserRepository
+from lib.user import User
+from lib.space_repository import SpaceRepository
 
 
 # Create a new Flask app
@@ -38,7 +38,7 @@ def get_space():
 @app.route('/space', methods=['POST'])
 def list_space():
     connection = get_flask_database_connection(app)
-    repository = SpacesRepository(connection)
+    repository = SpaceRepository(connection)
     name = request.form['space_name']
     description = request.form['description']
     price = request.form['price']
@@ -73,12 +73,12 @@ def logout():
 @app.route('/index', methods=['POST'])
 def new_user_created():
     connection = get_flask_database_connection(app)
-    repository = UsersRepository(connection)
+    repository = UserRepository(connection)
 
     email = request.form['email']
     password = request.form['password']
-    user = Users(None, email, password)
-    repository.new_user_created(user)
+    user = User(None, email, password)
+    repository.create(user)
 
     return render_template('/index.html')
 
@@ -86,7 +86,7 @@ def new_user_created():
 @app.route('/spaces', methods=['GET'])
 def view_spaces():
     connection = get_flask_database_connection(app)
-    repository = SpacesRepository(connection)
+    repository = SpaceRepository(connection)
     spaces = repository.all()
     return render_template('book_space.html', spaces=spaces)
 

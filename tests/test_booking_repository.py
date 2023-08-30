@@ -40,7 +40,7 @@ def test_create_booking(db_connection):
     db_connection.seed("seeds/makers_bnb.sql")
     repository = BookingRepository(db_connection)
     booking = Booking(None, date(2023, 6, 14), True, 2, 3)
-    repository.create_booking(booking)
+    repository.create(booking)
     assert repository.all() == [
         Booking(1, date(2023, 7, 10), True, 3, 1),
         Booking(2, date(2023, 8, 15), True, 2, 2),
@@ -57,7 +57,7 @@ Test delete a booking
 def test_delete_a_booking(db_connection):
     db_connection.seed("seeds/makers_bnb.sql")
     repository = BookingRepository(db_connection)
-    repository.delete_booking(1)
+    repository.delete(1)
     assert repository.all() == [
         Booking(2, date(2023, 8, 15), True, 2, 2),
         Booking(3, date(2023, 9, 20), True, 1, 3)

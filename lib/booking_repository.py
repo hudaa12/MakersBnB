@@ -5,7 +5,7 @@ class BookingRepository:
     def __init__(self, connection):
         self._connection = connection
 
-    def create_booking(self, booking):
+    def create(self, booking):
         rows = self._connection.execute(
             'INSERT INTO bookings (booking_date, confirmed, booked_by, space_id) VALUES (%s, %s, %s, %s) RETURNING id', [booking.booking_date, booking.confirmed, booking.booked_by, booking.space_id])
         booking.id = rows[0]['id']
@@ -18,7 +18,7 @@ class BookingRepository:
         bookings = []
         for row in rows:
             item = Booking(row['id'], row['booking_date'],
-                           row['confirmed'], row['booked_by'], row['space_id'])
+                        row['confirmed'], row['booked_by'], row['space_id'])
             bookings.append(item)
         return bookings
 
@@ -30,7 +30,7 @@ class BookingRepository:
         row = rows[0]
         return Booking(row['id'], row['booking_date'], row['confirmed'], row['booked_by'], row['space_id'])
 
-    def delete_booking(self, id):
+    def delete(self, id):
         self._connection.execute(
             'DELETE FROM bookings WHERE id = %s',
             [id]

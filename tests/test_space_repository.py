@@ -1,11 +1,11 @@
-from lib.spaces_repository import SpacesRepository
+from lib.space_repository import SpaceRepository
 from lib.space import Space
 from datetime import date
 
 
 def test_get_all_spaces(db_connection):
     db_connection.seed('seeds/makers_bnb.sql')
-    repository = SpacesRepository(db_connection)
+    repository = SpaceRepository(db_connection)
     spaces = repository.all()
     assert spaces == [
         Space(1,'House_1', 'nice house', 150.00, date(2023,1,1), date(2023,10,1), 1),
@@ -14,7 +14,7 @@ def test_get_all_spaces(db_connection):
     ]
 def test_create_a_space(db_connection):
     db_connection.seed('seeds/makers_bnb.sql')
-    repository = SpacesRepository(db_connection)
+    repository = SpaceRepository(db_connection)
     repository.create(Space(None,'House_4','nice porch', 300.00, date(2023,10,5),date(2023,11,4),2))
     spaces = repository.all()
     assert spaces == [

@@ -1,4 +1,4 @@
-class Users:
+class User:
     def __init__(self, id, email, password, spaces = [], bookings = []):
         self.id = id
         self.email = email
