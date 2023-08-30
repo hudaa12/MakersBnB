@@ -14,12 +14,12 @@
       <a href="/signout" class="button">Sign out</a>
     </div>
     <div class="book_space">
-        <a href="/spaces/new" class="button">List a Space</a>
+        <a href="/space" class="button">List a Space</a>
     </div>
     {% for space in spaces %}
     <div class="list_of_spaces">
         <h2>
-            <a href="/spaces/{{ spaces.id }}">{{ spaces.name }} {{ spaces.description }}</a>
+            <a href="/spaces/{{ space.id }}">{{ space.name }} {{ space.description }} {{space.price}}</a>
         </h2>
     </div>
     {% endfor %}
