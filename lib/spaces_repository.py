@@ -7,9 +7,10 @@ class SpacesRepository:
         rows = self._connection.execute('SELECT * FROM spaces')
         spaces =[]
         for row in rows:
-            space = Space(row['id'], row['name'],row['description'], row['price'], row['avail_from'], row['avail_to'], row['user_id'])
+            space = Space(row['id'], row['name'], row['description'], row['price'], row['avail_from'], row['avail_to'], row['user_id'])
             spaces.append(space)
         return spaces
+    
     def create(self,space):
         self._connection.execute('INSERT INTO spaces (name, description, price, avail_from, avail_to, user_id) VALUES (%s,%s,%s,%s,%s,%s)', [space.name, space.description, space.price, space.avail_from, space.avail_to, space.user_id])
         return None
