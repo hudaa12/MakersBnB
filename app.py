@@ -4,6 +4,7 @@ from lib.database_connection import get_flask_database_connection
 from flask_session import Session
 from lib.users_repository import UsersRepository
 from lib.users import Users
+from lib.spaces_repository import SpacesRepository
 
 
 # Create a new Flask app
@@ -40,7 +41,6 @@ def logout():
     session["name"] = None
     return redirect("index.html")
 
-
 @app.route('/index', methods=['POST'])
 def new_user_created():
     connection = get_flask_database_connection(app)
@@ -52,6 +52,13 @@ def new_user_created():
     repository.new_user_created(user)
 
     return render_template('/index.html')
+
+@app.route('/spaces', methods=['GET'])
+def view_spaces():
+    connection = get_flask_database_connection(app)
+    repository = SpacesRepository(connection)
+    spaces = repository.all()
+    return render_template('book_space.html', spaces=spaces)
 
 
 # These lines start the server if you run this file directly
