@@ -16,4 +16,4 @@ def test_users_are_equal():
 
 def test_users_format():
     user1 = Users(1, "Jim@mail.com", "1234567!")
-    assert str(user1) == "User(1, Jim@mail.com, 1234567!)"
+    assert str(user1) == "User(1, Jim@mail.com, 1234567!, [], [])"
