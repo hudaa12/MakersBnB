@@ -10,3 +10,8 @@ def test_space_initialises():
     assert space.avail_from == date(2023,1,1)
     assert space.avail_to == date(2023,10,1)
     assert space.user_id == 1
+
+def test_equal():
+    space1 = Space(1,'House_1', 'nice house', 150.00, date(2023,1,1), date(2023,10,1), 1)
+    space2 = Space(1,'House_1', 'nice house', 150.00, date(2023,1,1), date(2023,10,1), 1)
+    assert space1 == space2
