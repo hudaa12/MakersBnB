@@ -32,7 +32,7 @@ CREATE TABLE spaces (
   avail_from date,
   avail_to date,
   user_id int,
-  constraint fk_user foreign key(user_id) references users(id) on delete cascade
+  constraint fk_user_id foreign key(user_id) references users(id) on delete cascade
 );
 
 CREATE SEQUENCE IF NOT EXISTS bookings_id_seq;
