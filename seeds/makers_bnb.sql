@@ -9,11 +9,8 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP SEQUENCE IF EXISTS users_id_seq;
 DROP TABLE IF EXISTS spaces CASCADE;
 DROP SEQUENCE IF EXISTS spaces_id_seq;
-
 DROP TABLE IF EXISTS bookings CASCADE;
 DROP SEQUENCE IF EXISTS bookings_id_seq;
-DROP TABLE IF EXISTS spaces_bookings CASCADE;
-DROP SEQUENCE IF EXISTS spaces_bookings_id_seq;
 
 -- Then, we recreate them
 
@@ -24,6 +21,8 @@ CREATE TABLE users (
     password VARCHAR(255)
 );
 
+-- Maybe phone number, to receive a text message after booking
+
 CREATE SEQUENCE IF NOT EXISTS spaces_id_seq;
 CREATE TABLE spaces (
   id SERIAL PRIMARY KEY,
@@ -33,8 +32,8 @@ CREATE TABLE spaces (
   avail_from date,
   avail_to date,
   user_id int
+  constraint fk user_id foreign key(user_id) references users(id) on delete cascade
 );
-
 
 CREATE SEQUENCE IF NOT EXISTS bookings_id_seq;
 CREATE TABLE bookings (
@@ -43,18 +42,11 @@ CREATE TABLE bookings (
   confirmed boolean,
   booked_by int,
   space_id int
+  constraint fk booked_by foreign key(booked_by) references users(id) on delete cascade,
+  constraint fk space_id foreign key(space_id) references spaces(id) on delete cascade
 );
 
-CREATE SEQUENCE IF NOT EXISTS spaces_bookings_id_seq;
-CREATE TABLE spaces_bookings (
-  space_id int,
-  booking_id int,
-  constraint fk_space foreign key(space_id) references spaces(id) on delete cascade,
-  constraint fk_booking foreign key(booking_id) references bookings(id) on delete cascade,
-  PRIMARY KEY (space_id, booking_id)
-);
-
-
+-- Maybe booking total price?!
 
 -- Finally, we add any records that are needed for the tests to run
 
@@ -70,13 +62,3 @@ INSERT INTO spaces (name, description, price, avail_from, avail_to, user_id) VAL
 INSERT INTO bookings (booking_date, confirmed, booked_by, space_id) VALUES ('2023/7/10', True, 3, 1);
 INSERT INTO bookings (booking_date, confirmed, booked_by, space_id) VALUES ('2023/8/15', True, 2, 2);
 INSERT INTO bookings (booking_date, confirmed, booked_by, space_id) VALUES ('2023/9/20', True, 1, 3);
-
-INSERT INTO spaces_bookings (space_id, booking_id) VALUES (1, 3);
-INSERT INTO spaces_bookings (space_id, booking_id) VALUES (2, 2);
-INSERT INTO spaces_bookings (space_id, booking_id) VALUES (3, 1);
-
-
-
-
-
-
