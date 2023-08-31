@@ -20,8 +20,29 @@ body {
     display: grid;
     justify-items: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
     font-family: TwitterChirp;
     color: #FF5A5F;
     }
+
+.nav {
+      margin-left: auto;
+      padding: 20px;
+  }
+
+.main-box{
+
+  background-color: #F5F5F5;
+  text-align: center;
+  position: absolute; 
+  top: 50%;
+  border: solid;
+  border-radius: 10px;
+  padding: 20px;
+
+}
+
+.nav{
+
+  font-family: TwitterChirpExtendedHeavy;
+
+}
