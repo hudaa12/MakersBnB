@@ -10,7 +10,7 @@ from lib.user_repository import UserRepository
 from lib.user import User
 from lib.space_repository import SpaceRepository
 from lib.booking_repository import BookingRepository
-
+from lib.booking import Booking
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -44,13 +44,12 @@ def get_space_detail(id):
     return render_template('book_space.html', space=space)
 
 
-@app.route('/spaces', methods=['GET']) 
+@app.route('/spaces', methods=['GET'])
 def get_spaces():
     connection = get_flask_database_connection(app)
     repository = SpaceRepository(connection)
     spaces = repository.all()
-    return render_template('spaces.html', spaces=spaces) # add user=user
-
+    return render_template('spaces.html', spaces=spaces)  # add user=user
 
 
 @app.route('/space', methods=['POST'])
@@ -66,7 +65,7 @@ def post_space():
     space = Space(None, name, description, price,
                   available_from, available_to, user_id)
     repository.create(space)
-    return render_template('space.html')
+    return render_template('space.html/')
 
 
 @app.route('/login', methods=['GET'])
@@ -85,8 +84,7 @@ def login():
     if user_id == None:
         return redirect('/')
     else:
-        return redirect(f"/spaces?user_id={user_id}")
-
+        return redirect("/spaces")
 
 
 @app.route("/logout")
@@ -112,18 +110,28 @@ def get_about():
     return render_template('about.html')
 
 
+# @app.route('/requests/<user_id>/<space_id>', methods=['POST'])
+# def create_booking(user_id, space_id):
+#     connection = get_flask_database_connection(app)
+#     repository = BookingRepository(connection)
+#     booking_date = request.form['date']
+#     booking = Booking(None, booking_date, user_id, space_id)
+#     repository.create_booking(booking)
+#     return redirect('/bookings')
 
-@app.route('/book_space/<user_id>', methods=['POST'])
-def create_booking(user_id):
-    connection = get_flask_database_connection(app)
-    repository = BookingRepository(connection)
-    space_id = request.form['space_id']
-    booking_date = request.form['date']
-    repository.create_booking(booking_date, space_id, user_id)
-    return redirect('/bookings')
+# @app.route('/bookings/', methods=['POST'])
+# def create_booking():
+#     connection = get_flask_database_connection(app)
+#     repository = BookingRepository(connection)
+#     booking_date = request.form['date']
+#     user_id = request.form['user_id']
+#     space_id = request.form['space_id']
+#     booking = Booking(None, booking_date, user_id, space_id)
+#     repository.create_booking(booking)
+#     return redirect('/bookings')
 
 
-@app.route('/bookings', methods=['GET']) 
+@app.route('/bookings', methods=['GET'])
 def get_bookings():
     connection = get_flask_database_connection(app)
     repository = BookingRepository(connection)
