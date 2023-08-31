@@ -11,6 +11,7 @@ from lib.user import User
 from lib.space_repository import SpaceRepository
 from lib.booking_repository import BookingRepository
 
+
 # Create a new Flask app
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -34,6 +35,7 @@ def get_index():
 def get_space():
     return render_template('space.html')
 
+
 @app.route('/spaces/<int:id>')
 def get_space_detail(id):
     connection = get_flask_database_connection(app)
@@ -41,12 +43,15 @@ def get_space_detail(id):
     space = repository.find(id)
     return render_template('book_space.html', space=space)
 
+
 @app.route('/spaces', methods=['GET']) 
 def get_spaces():
     connection = get_flask_database_connection(app)
     repository = SpaceRepository(connection)
     spaces = repository.all()
     return render_template('spaces.html', spaces=spaces) # add user=user
+
+
 
 @app.route('/space', methods=['POST'])
 def post_space():
@@ -59,7 +64,7 @@ def post_space():
     available_to = request.form['available_to']
     user_id = request.form['user_id']
     space = Space(None, name, description, price,
-                available_from, available_to, user_id)
+                  available_from, available_to, user_id)
     repository.create(space)
     return render_template('space.html')
 
@@ -68,17 +73,20 @@ def post_space():
 def get_login():
     return render_template('login.html')
 
+
 @app.route("/login", methods=["POST"])
 def login():
     session["email"] = request.form.get("email")
     session["password"] = request.form.get("password")
     connection = get_flask_database_connection(app)
-    repository = UserRepository(connection) 
-    user_id = repository.check_user_login(request.form.get("email"), request.form.get("password"))
+    repository = UserRepository(connection)
+    user_id = repository.check_user_login(
+        request.form.get("email"), request.form.get("password"))
     if user_id == None:
         return redirect('/')
     else:
-        return redirect(f"/spaces")
+        return redirect(f"/spaces?user_id={user_id}")
+
 
 
 @app.route("/logout")
@@ -103,12 +111,25 @@ def post_user():
 def get_about():
     return render_template('about.html')
 
+
+
+@app.route('/book_space/<user_id>', methods=['POST'])
+def create_booking(user_id):
+    connection = get_flask_database_connection(app)
+    repository = BookingRepository(connection)
+    space_id = request.form['space_id']
+    booking_date = request.form['date']
+    repository.create_booking(booking_date, space_id, user_id)
+    return redirect('/bookings')
+
+
 @app.route('/bookings', methods=['GET']) 
 def get_bookings():
     connection = get_flask_database_connection(app)
     repository = BookingRepository(connection)
     bookings = repository.all()
     return render_template('requests.html', bookings=bookings)
+
 
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
