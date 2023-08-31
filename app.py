@@ -40,7 +40,7 @@ def get_spaces():
     connection = get_flask_database_connection(app)
     repository = SpaceRepository(connection)
     spaces = repository.all()
-    return render_template('spaces.html', spaces=spaces) # add user=user
+    return render_template('spaces.html', spaces=spaces,) # add user=user
 ###########
 
 @app.route('/space', methods=['POST'])
@@ -68,11 +68,12 @@ def login():
     session["email"] = request.form.get("email")
     session["password"] = request.form.get("password")
     connection = get_flask_database_connection(app)
-    repository = SpaceRepository(connection) 
+    repository = UserRepository(connection) 
     user_id = repository.check_user_login(request.form.get("email"), request.form.get("password"))
-
-    # redirect to the main page
-    return render_template("/spaces/<user_id>")
+    if user_id == None:
+        return redirect('/')
+    else:
+        return redirect(f"/spaces")
 
 @app.route("/logout")
 def logout():
