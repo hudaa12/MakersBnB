@@ -11,6 +11,12 @@ class SpaceRepository:
             spaces.append(space)
         return spaces
     
+    def find(self,id):
+        rows = self._connection.execute('SELECT * FROM spaces WHERE id = %s', [id])
+        row = rows[0]
+        return Space(row['id'], row['name'], row['description'], row['price'], row['avail_from'], row['avail_to'], row['user_id'])
+
+    
     def create(self,space):
         self._connection.execute('INSERT INTO spaces (name, description, price, avail_from, avail_to, user_id) VALUES (%s,%s,%s,%s,%s,%s)', [space.name, space.description, space.price, space.avail_from, space.avail_to, space.user_id])
         return None
