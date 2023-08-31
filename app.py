@@ -10,6 +10,7 @@ from lib.user_repository import UserRepository
 from lib.user import User
 from lib.space_repository import SpaceRepository
 from lib.booking_repository import BookingRepository
+from lib.booking import Booking
 
 
 # Create a new Flask app
@@ -74,7 +75,7 @@ def get_login():
 
 
 @app.route('/login', methods=['POST'])
-def post_login():
+def login():
     connection = get_flask_database_connection(app)
     repository = UserRepository(connection)
     email = request.form['email']
@@ -82,26 +83,12 @@ def post_login():
     new_user = User(None, email, password)
     repository.create(new_user)
 
-    if UserRepository.check_user_login(email, password) == True:
-        user = UserRepository.find_by_email(email)
+    if repository.check_user_login(email, password) == True:
+        user = repository.find_by_email(email)
         session["user_id"] = user.id
-        return render_template('spaces.html')
-    else:
         return redirect('/spaces')
-
-
-# @app.route("/login", methods=["POST"])
-# def login():
-#     session["email"] = request.form.get("email")
-#     session["password"] = request.form.get("password")
-#     connection = get_flask_database_connection(app)
-#     repository = UserRepository(connection)
-#     user_id = repository.check_user_login(
-#         request.form.get("email"), request.form.get("password"))
-#     if user_id == None:
-#         return redirect('/')
-#     else:
-#         return redirect(f"/spaces?user_id={user_id}")
+    else:
+        return redirect('/')
 
 
 @app.route("/logout")
@@ -127,13 +114,15 @@ def get_about():
     return render_template('about.html')
 
 
-@app.route('/book_space/<user_id>', methods=['POST'])
-def create_booking(user_id):
+@app.route('/request_to_book', methods=['POST'])
+def create_booking():
     connection = get_flask_database_connection(app)
     repository = BookingRepository(connection)
-    space_id = request.form['space_id']
     booking_date = request.form['date']
-    repository.create_booking(booking_date, space_id, user_id)
+    booked_by = session['user_id']
+    space_id = int(request.form['space_id'])
+    booking = Booking(None, booking_date, booked_by, space_id)
+    repository.create_booking(booking)
     return redirect('/bookings')
 
 

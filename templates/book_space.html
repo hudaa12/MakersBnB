@@ -3,25 +3,27 @@
   <head>
     <title>MakersBnB</title>
 
-    <link rel="stylesheet" href="/static/style.css" >
+    <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
-    <img src="/static/img/logo2.png" alt="logo" width="100" height="40">
+    <img src="/static/img/logo2.png" alt="logo" width="100" height="40" />
     <div class="nav">
       <a href="/spaces" class="button">Spaces</a>
-      <a href="/requests" class="button">Requests</a>
-      <a href="/signout" class="button">Sign out</a>
+      <a href="/bookings" class="button">Requests</a>
+      <a href="/logout" class="button">Log out</a>
     </div>
     <h1>Beautiful Relaxing Space</h1>
     <p class="t-name">Name: {{space.name}}</p>
-    <p class="t-description">Discription: {{space.description}}</p>
-    <p class="t-price">Price per night: £{{space.price}}</p><br>
+    <p class="t-space_id">Space id: {{space.id}}</p>
+    <p class="t-description">Description: {{space.description}}</p>
+    <p class="t-price">Price per night: £{{space.price}}</p>
+    <br />
 
-    <form action="/requests" method="POST"></form>
+    <form action="/request_to_book" method="POST">
       <label>Pick a night:</label>
-      <input type="date" pattern="\d{4}-\d{2}-\d{2}" name="requests" id="requests" />
-    <br>
-    <p><input type="submit" value="Request to Book" class="button" /></p>
-  </form>
+      <input type="hidden" name="space_id" value="{{ space.id }}" />
+      <input type="date" pattern="\d{4}-\d{2}-\d{2}" name="date" id="date" />
+      <input type="submit" value="Request to Book" class="button" />
+    </form>
   </body>
 </html>
