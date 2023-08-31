@@ -39,7 +39,6 @@ def get_space_detail(id):
     connection = get_flask_database_connection(app)
     repository = SpaceRepository(connection)
     space = repository.find(id)
-
     return render_template('book_space.html', space=space)
 
 ############
@@ -48,7 +47,7 @@ def get_spaces():
     connection = get_flask_database_connection(app)
     repository = SpaceRepository(connection)
     spaces = repository.all()
-    return render_template('spaces.html', spaces=spaces,) # add user=user
+    return render_template('spaces.html', spaces=spaces) # add user=user
 ###########
 
 @app.route('/space', methods=['POST'])
