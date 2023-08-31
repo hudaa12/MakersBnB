@@ -43,16 +43,14 @@ def get_space_detail(id):
     space = repository.find(id)
     return render_template('book_space.html', space=space)
 
-############
 
-
-@app.route('/spaces', methods=['GET'])
+@app.route('/spaces', methods=['GET']) 
 def get_spaces():
     connection = get_flask_database_connection(app)
     repository = SpaceRepository(connection)
     spaces = repository.all()
-    return render_template('spaces.html', spaces=spaces)  # add user=user
-###########
+    return render_template('spaces.html', spaces=spaces) # add user=user
+
 
 
 @app.route('/space', methods=['POST'])
@@ -113,6 +111,7 @@ def get_about():
     return render_template('about.html')
 
 
+
 @app.route('/book_space/<user_id>', methods=['POST'])
 def create_booking(user_id):
     connection = get_flask_database_connection(app)
@@ -121,6 +120,14 @@ def create_booking(user_id):
     booking_date = request.form['date']
     repository.create_booking(booking_date, space_id, user_id)
     return redirect('/bookings')
+
+
+@app.route('/bookings', methods=['GET']) 
+def get_bookings():
+    connection = get_flask_database_connection(app)
+    repository = BookingRepository(connection)
+    bookings = repository.all()
+    return render_template('requests.html', bookings=bookings)
 
 
 # These lines start the server if you run this file directly
