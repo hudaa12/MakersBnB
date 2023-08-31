@@ -34,14 +34,14 @@ def get_index():
 def get_space():
     return render_template('space.html')
 
-
-@app.route('/spaces', methods=['GET'])
+############
+@app.route('/spaces', methods=['GET']) 
 def get_spaces():
     connection = get_flask_database_connection(app)
     repository = SpaceRepository(connection)
     spaces = repository.all()
-    return render_template('spaces.html', spaces=spaces)
-
+    return render_template('spaces.html', spaces=spaces) # add user=user
+###########
 
 @app.route('/space', methods=['POST'])
 def post_space():
@@ -63,12 +63,16 @@ def post_space():
 def get_login():
     return render_template('login.html')
 
-
-@app.route('/login', methods=['POST'])
-def post_login():
+@app.route("/login", methods=["POST"])
+def login():
     session["email"] = request.form.get("email")
-    return redirect("/spaces")
+    session["password"] = request.form.get("password")
+    connection = get_flask_database_connection(app)
+    repository = SpaceRepository(connection) 
+    user_id = repository.check_user_login(request.form.get("email"), request.form.get("password"))
 
+    # redirect to the main page
+    return render_template("/spaces/<user_id>")
 
 @app.route("/logout")
 def logout():

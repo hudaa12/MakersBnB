@@ -18,3 +18,11 @@ class UserRepository:
         [user.email, user.password]
         )
         user.id = rows[0]['id']
+
+    def check_user_login(self, email, password):
+        row = self._connection.execute('SELECT * from users where email = %s AND password = %s', [email, password])
+        if len(row) == 0:
+            return None
+        else:
+            return row[0]['id']
+

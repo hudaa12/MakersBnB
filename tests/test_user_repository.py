@@ -24,3 +24,16 @@ def test_new_user_created(db_connection):
         User(3, 'user_3@makers.com', 'abcdef222222$'),
         User(4, "h@mail.com", "123678?")
     ]
+
+def test_check_user_login(db_connection):
+    db_connection.seed("seeds/makers_bnb.sql")
+    repository = UserRepository(db_connection)
+    user_id = repository.check_user_login('user_1@makers.com', '123453455555!')
+    assert user_id == 1
+
+def test_check_user_login_incorrect(db_connection):
+    db_connection.seed("seeds/makers_bnb.sql")
+    repository = UserRepository(db_connection)
+    user_id = repository.check_user_login('user_1@makerss.com', '123453455555!')
+    assert user_id == None
+
