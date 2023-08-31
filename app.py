@@ -34,6 +34,14 @@ def get_index():
 def get_space():
     return render_template('space.html')
 
+@app.route('/spaces/<int:id>')
+def get_space_detail(id):
+    connection = get_flask_database_connection(app)
+    repository = SpaceRepository(connection)
+    space = repository.find(id)
+
+    return render_template('book_space.html', space=space)
+
 ############
 @app.route('/spaces', methods=['GET']) 
 def get_spaces():
