@@ -9,7 +9,7 @@ from flask_session import Session
 from lib.user_repository import UserRepository
 from lib.user import User
 from lib.space_repository import SpaceRepository
-
+from lib.booking_repository import BookingRepository
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -41,14 +41,12 @@ def get_space_detail(id):
     space = repository.find(id)
     return render_template('book_space.html', space=space)
 
-############
 @app.route('/spaces', methods=['GET']) 
 def get_spaces():
     connection = get_flask_database_connection(app)
     repository = SpaceRepository(connection)
     spaces = repository.all()
     return render_template('spaces.html', spaces=spaces) # add user=user
-###########
 
 @app.route('/space', methods=['POST'])
 def post_space():
@@ -104,7 +102,12 @@ def post_user():
 def get_about():
     return render_template('about.html')
 
-
+@app.route('/bookings', methods=['GET']) 
+def get_bookings():
+    connection = get_flask_database_connection(app)
+    repository = BookingRepository(connection)
+    bookings = repository.all()
+    return render_template('requests.html', bookings=bookings)
 
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
