@@ -57,14 +57,15 @@ def get_spaces():
 def post_space():
     connection = get_flask_database_connection(app)
     repository = SpaceRepository(connection)
+    booked_by = session['user_id']
     name = request.form['space_name']
     description = request.form['description']
     price = request.form['price']
     available_from = request.form['available_from']
     available_to = request.form['available_to']
-    user_id = request.form['user_id']
+
     space = Space(None, name, description, price,
-                  available_from, available_to, user_id)
+                  available_from, available_to, booked_by)
     repository.create(space)
     return render_template('space.html')
 
