@@ -44,13 +44,12 @@ def get_space_detail(id):
     return render_template('book_space.html', space=space)
 
 
-@app.route('/spaces', methods=['GET']) 
+@app.route('/spaces', methods=['GET'])
 def get_spaces():
     connection = get_flask_database_connection(app)
     repository = SpaceRepository(connection)
     spaces = repository.all()
-    return render_template('spaces.html', spaces=spaces) # add user=user
-
+    return render_template('spaces.html', spaces=spaces)  # add user=user
 
 
 @app.route('/space', methods=['POST'])
@@ -74,19 +73,35 @@ def get_login():
     return render_template('login.html')
 
 
-@app.route("/login", methods=["POST"])
-def login():
-    session["email"] = request.form.get("email")
-    session["password"] = request.form.get("password")
+@app.route('/login', methods=['POST'])
+def post_login():
     connection = get_flask_database_connection(app)
     repository = UserRepository(connection)
-    user_id = repository.check_user_login(
-        request.form.get("email"), request.form.get("password"))
-    if user_id == None:
-        return redirect('/')
-    else:
-        return redirect(f"/spaces?user_id={user_id}")
+    email = request.form['email']
+    password = request.form['password']
+    new_user = User(None, email, password)
+    repository.create(new_user)
 
+    if UserRepository.check_user_login(email, password) == True:
+        user = UserRepository.find_by_email(email)
+        session["user_id"] = user.id
+        return render_template('spaces.html')
+    else:
+        return redirect('/spaces')
+
+
+# @app.route("/login", methods=["POST"])
+# def login():
+#     session["email"] = request.form.get("email")
+#     session["password"] = request.form.get("password")
+#     connection = get_flask_database_connection(app)
+#     repository = UserRepository(connection)
+#     user_id = repository.check_user_login(
+#         request.form.get("email"), request.form.get("password"))
+#     if user_id == None:
+#         return redirect('/')
+#     else:
+#         return redirect(f"/spaces?user_id={user_id}")
 
 
 @app.route("/logout")
@@ -112,7 +127,6 @@ def get_about():
     return render_template('about.html')
 
 
-
 @app.route('/book_space/<user_id>', methods=['POST'])
 def create_booking(user_id):
     connection = get_flask_database_connection(app)
@@ -123,7 +137,7 @@ def create_booking(user_id):
     return redirect('/bookings')
 
 
-@app.route('/bookings', methods=['GET']) 
+@app.route('/bookings', methods=['GET'])
 def get_bookings():
     connection = get_flask_database_connection(app)
     repository = BookingRepository(connection)

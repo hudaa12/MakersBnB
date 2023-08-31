@@ -2,6 +2,7 @@ from lib.user import User
 from lib.space import Space
 from lib.booking import Booking
 
+
 class UserRepository:
 
     def __init__(self, connection):
@@ -17,35 +18,42 @@ class UserRepository:
 
     def find_with_spaces_and_bookings(self, user_id):
         rows = self._connection.execute(
-            'SELECT users.id, users.email, users.password, '\
-            'spaces.id AS space_id, spaces.name AS space_name, spaces.description, spaces.price, ' \
-            'spaces.avail_from, spaces.avail_to, spaces.user_id ' \
+            'SELECT users.id, users.email, users.password, '
+            'spaces.id AS space_id, spaces.name AS space_name, spaces.description, spaces.price, '
+            'spaces.avail_from, spaces.avail_to, spaces.user_id '
             'FROM users JOIN spaces ON users.id = spaces.user_id WHERE users.id = %s', [user_id])
         spaces = []
         for row in rows:
-            spaces.append(Space(row['space_id'], row['space_name'], row['description'], row['price'], row['avail_from'], row['avail_to'], row['user_id']))
-        
+            spaces.append(Space(row['space_id'], row['space_name'], row['description'],
+                          row['price'], row['avail_from'], row['avail_to'], row['user_id']))
+
         rows = self._connection.execute(
-            'SELECT users.id, users.email, users.password, ' \
-            'bookings.id AS booking_id, bookings.booking_date, bookings.confirmed, bookings.booked_by, bookings.space_id ' \
+            'SELECT users.id, users.email, users.password, '
+            'bookings.id AS booking_id, bookings.booking_date, bookings.confirmed, bookings.booked_by, bookings.space_id '
             'FROM users JOIN bookings ON users.id = bookings.booked_by WHERE users.id = %s', [user_id])
         bookings = []
         for row in rows:
-            bookings.append(Booking(row['booking_id'], row['booking_date'], row['confirmed'], row['booked_by'], row['space_id']))
+            bookings.append(Booking(row['booking_id'], row['booking_date'],
+                            row['confirmed'], row['booked_by'], row['space_id']))
         print(User(row['id'], row['email'], row['password'], spaces, bookings))
 
         # return User(row['id'], row['email'], row['password'], spaces, bookings)
 
     def create(self, user):
-        rows = self._connection.execute( 'INSERT INTO users (email, password) VALUES (%s, %s) RETURNING id', 
-        [user.email, user.password]
-        )
+        rows = self._connection.execute('INSERT INTO users (email, password) VALUES (%s, %s) RETURNING id',
+                                        [user.email, user.password]
+                                        )
         user.id = rows[0]['id']
 
     def check_user_login(self, email, password):
-        row = self._connection.execute('SELECT * from users where email = %s AND password = %s', [email, password])
-        if len(row) == 0:
-            return None
+        rows = self._connection.execute(
+            'SELECT * from users where email = %s and password = %s', [email, password])
+        if len(rows) == 0:
+            return False
         else:
-            return row[0]['id']
+            return True
 
+    def find_by_email(self, email):
+        row = self._connection.execute(
+            'SELECT * from users where email = %s', [email])
+        return User(row[0]['id'], row[0]['email'], row[0]['password'])
