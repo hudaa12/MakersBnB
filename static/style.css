@@ -1,3 +1,27 @@
+@font-face {
+    font-family: TwitterChirp;
+    src: url(https://abs.twimg.com/fonts/v2/chirp-regular-web.woff2) format('woff2');
+    src: url(https://abs.twimg.com/fonts/v2/chirp-regular-web.woff) format('woff');
+    font-weight: 400;
+    font-style: 'normal';
+    font-display: 'swap';
+  }
+  @font-face {
+    font-family: TwitterChirpExtendedHeavy;
+    src: url(https://abs.twimg.com/fonts/v1/chirp-extended-heavy-web.woff2) format('woff2');
+    src: url(https://abs.twimg.com/fonts/v1/chirp-extended-heavy-web.woff) format('woff');
+    font-weight: 800;
+    font-style: 'normal';
+    font-display: 'swap';
+  }
+
 body {
-    font-size: 18px;
-}
+    background-color: #FEFBEA;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    font-family: TwitterChirp;
+    color: #FF5A5F;
+    }
