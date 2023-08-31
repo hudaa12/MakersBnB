@@ -78,7 +78,7 @@ def login():
 @app.route("/logout")
 def logout():
     session["name"] = None
-    return redirect("index.html")
+    return render_template('/login.html')
 
 
 @app.route('/index', methods=['POST'])
@@ -93,6 +93,9 @@ def post_user():
     return render_template('/index.html')
 
 
+@app.route('/about', methods=['GET'])
+def get_about():
+    return render_template('about.html')
 
 
 
