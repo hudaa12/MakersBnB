@@ -80,6 +80,7 @@ def login():
     else:
         return redirect(f"/spaces")
 
+
 @app.route("/logout")
 def logout():
     session["name"] = None
