@@ -11,8 +11,12 @@
       <a href="/about" class="button">About</a>
       <a href="/login" class="button">Login</a>
     </div>
-
-
+    
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert-{{ message.category }}">
+        {{ message }}
+      </div>
+    {% endfor %}
   <div class="main-box">
     <h1>Feel at home, anywhere</h1>
     <h2>Escape to anywhere, anytime on Makers BnB</h2>
@@ -28,6 +32,7 @@
           <br />
           <input required type="password" name="password" id="password" />
         </h3>
+        
 
 
           <p><input type="submit" value="Sign up" class="btn" /></p>
