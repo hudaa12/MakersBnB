@@ -30,11 +30,11 @@ class UserRepository:
 
         rows = self._connection.execute(
             'SELECT users.id, users.email, users.password, '
-            'bookings.id AS booking_id, bookings.booking_date, bookings.confirmed, bookings.booked_by, bookings.space_id '
+            'bookings.id AS booking_id, bookings.booking_date, bookings.booked_by, bookings.space_id '
             'FROM users JOIN bookings ON users.id = bookings.booked_by WHERE users.id = %s', [user_id])
         bookings = []
         for row in rows:
-            bookings.append(Booking(row['booking_id'], row['booking_date'], row['confirmed'], row['booked_by'], row['space_id']))
+            bookings.append(Booking(row['booking_id'], row['booking_date'], row['booked_by'], row['space_id']))
 
         return User(row['id'], row['email'], row['password'], spaces, bookings)
         
