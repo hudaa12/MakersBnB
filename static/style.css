@@ -29,7 +29,15 @@ body {
     }
 
 .button {
-    padding: 8px;
+  -webkit-border-radius: 16;
+  -moz-border-radius: 16;
+  border-radius: 16px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #FF5A5F;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
 }
 
 .nav {
@@ -68,9 +76,23 @@ body {
     padding: 10px 20px 10px 20px;
     text-decoration: none;
   }
+
+  .link {
+    color: black;
+    font-family: TwitterChirp;
+  }
   
   .btn:hover {
     background: #ffffff;
-    color: #FF5A5F;;
+    color: #FF5A5F;
     text-decoration: none;
+  }
+
+  .list_of_spaces, .list_of_bookings {
+    border: solid #FF5A5F;
+    border-radius: 20px;
+    padding: 20px;
+    width: 400px;
+    margin: 20px;
+    background-color: #F5F5F5;
   }
