@@ -14,10 +14,12 @@
       <a href="/logout" class="button">Log out</a>
     </div>
     <h1>List a Space</h1>
-
+    <br />
     <form action="/space" method="POST">
       <label>Name:</label>
+      <br />
       <input type="text" name="space_name" id="name" />
+      <br />
       <br />
       <label>Description:</label>
       <br />
@@ -28,12 +30,17 @@
         cols="40"
       ></textarea>
       <br />
+      <br />
 
       <label>Price per night(£):</label>
       <input type="text" name="price" id="price" />
       <br />
+      <br />
+      <br />
       <label>Available from:</label>
       <input type="date" pattern="\d{4}-\d{2}-\d{2}" name="available_from" id="available_from" />
+      <br />
+      <br />
       <br />
       <label>Available to:</label>
       <input type="date" pattern="\d{4}-\d{2}-\d{2}" name="available_to" id="available_to" />
@@ -43,7 +50,7 @@
 
       <br />
 
-      <p><input type="submit" value="List My Space" class="button" /></p>
+      <p><input type="submit" value="List My Space" class="btn" /></p>
     </form>
   </body>
 </html>
