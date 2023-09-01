@@ -104,14 +104,11 @@ def post_user():
     repository = UserRepository(connection)
     email = request.form['email']
     password = request.form['password']
-    user = repository.find_by_email(email)
-    if user is not None:
-        flash('Email already exists please click Login', category='error')
-        return redirect('/')
-
     user = User(None, email, password)
     repository.create(user)
-
+    # if user is not None:
+    #     flash('Email already exists please click Login', category='error')
+    #     return redirect('/')
     return redirect('/spaces')
 
 
@@ -148,13 +145,16 @@ def get_bookings():
     bookings = repository.all()
     return render_template('requests.html', bookings=bookings)
 
+
 @app.route('/spaces')
 def get_my_account():
     return redirect('/user')
 
+
 @app.route('/space')
 def my_account():
     return redirect('/user')
+
 
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
