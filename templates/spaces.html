@@ -3,11 +3,7 @@
   <head>
     <title>MakersBnB</title>
 
-
-    <link rel="stylesheet" href="/static/style.css" >
-
-
-
+    <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
     <img src="/static/img/logo2.png" alt="logo" width="250" />
@@ -25,10 +21,10 @@
     <div class="list_of_spaces">
       <h3>
         <a class="link" href="/spaces/{{ space.id }}"
-          >{{ space.name }} {{ space.description }} {{space.price}}</a
+          >{{ space.name }} {{ space.description }}</a
         >
       </h3>
-      <img src={{space.profile_photo}} class="profile_photo">
+      <img src="{{space.profile_photo}}" class="profile_photo" />
     </div>
     {% endfor %}
   </body>
