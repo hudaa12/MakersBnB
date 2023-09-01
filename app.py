@@ -12,7 +12,6 @@ from lib.space_repository import SpaceRepository
 from lib.booking_repository import BookingRepository
 from lib.booking import Booking
 
-
 # Create a new Flask app
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -67,7 +66,7 @@ def post_space():
     space = Space(None, name, description, price,
                   available_from, available_to, booked_by)
     repository.create(space)
-    return render_template('space.html')
+    return render_template('space.html/')
 
 
 @app.route('/login', methods=['GET'])
