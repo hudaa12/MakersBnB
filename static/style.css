@@ -108,6 +108,20 @@ body {
   margin: 20px;
   background-color: #f5f5f5;
 
+  .list_of_spaces, .list_of_bookings {
+    border: solid #FF5A5F;
+    border-radius: 20px;
+    padding: 20px;
+    width: 400px;
+    margin: 20px;
+    background-color: #F5F5F5;
+  }
+
+  .profile_photo {
+    width: 150px;
+    height: 150px;
+  }
+
   /* Add these styles to center items */
   display: flex;
   flex-direction: column; /* Stack items vertically */
