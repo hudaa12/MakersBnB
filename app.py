@@ -106,7 +106,7 @@ def post_user():
     user = User(None, email, password)
     repository.create(user)
 
-    return render_template('/index.html')
+    return redirect('/spaces')
 
 
 @app.route('/about', methods=['GET'])
