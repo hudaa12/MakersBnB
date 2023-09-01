@@ -31,6 +31,7 @@ CREATE TABLE spaces (
   price float,
   avail_from date,
   avail_to date,
+  profile_photo text,
   user_id int,
   constraint fk_user_id foreign key(user_id) references users(id) on delete cascade
 );
@@ -53,9 +54,9 @@ INSERT INTO users (email, password) VALUES ('user_1@makers.com', '123453455555!'
 INSERT INTO users (email, password) VALUES ('user_2@makers.com', '678944676787@');
 INSERT INTO users (email, password) VALUES ('user_3@makers.com', 'abcdef222222$');
 
-INSERT INTO spaces (name, description, price, avail_from, avail_to, user_id) VALUES ('House_1', 'nice house', 150.00, '2023/01/01', '2023/10/01', 1);
-INSERT INTO spaces (name, description, price, avail_from, avail_to, user_id) VALUES ('House_2', 'nice pool', 250.00, '2023/04/01', '2023/09/01', 2);
-INSERT INTO spaces (name, description, price, avail_from, avail_to, user_id) VALUES ('House_3', 'nice garden', 350.00, '2023/06/01', '2023/11/01', 3);
+INSERT INTO spaces (name, description, price, avail_from, avail_to, profile_photo, user_id) VALUES ('House_1', 'nice house', 150.00, '2023/01/01', '2023/10/01', 'https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60', 1);
+INSERT INTO spaces (name, description, price, avail_from, avail_to, profile_photo, user_id) VALUES ('House_2', 'nice pool', 250.00, '2023/04/01', '2023/09/01','https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGhvdXNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60', 2);
+INSERT INTO spaces (name, description, price, avail_from, avail_to, profile_photo, user_id) VALUES ('House_3', 'nice garden', 350.00, '2023/06/01', '2023/11/01','https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG91c2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60', 3);
 
 
 INSERT INTO bookings (booking_date, booked_by, space_id) VALUES ('2023/7/10', 3, 1);
