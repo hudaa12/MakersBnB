@@ -62,9 +62,10 @@ def post_space():
     price = request.form['price']
     available_from = request.form['available_from']
     available_to = request.form['available_to']
+    profile_photo = request.form['profile_photo']
 
     space = Space(None, name, description, price,
-                  available_from, available_to, booked_by)
+                  available_from, available_to, profile_photo, booked_by)
     repository.create(space)
     return render_template('space.html/')
 
