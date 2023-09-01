@@ -143,6 +143,13 @@ def get_bookings():
     bookings = repository.all()
     return render_template('requests.html', bookings=bookings)
 
+@app.route('/spaces')
+def get_my_account():
+    return redirect('/user')
+
+@app.route('/space')
+def my_account():
+    return redirect('/user')
 
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
