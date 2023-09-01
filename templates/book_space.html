@@ -23,7 +23,7 @@
     <form action="/request_to_book" method="POST">
       <label>Pick a night:</label>
       <input type="hidden" name="space_id" value="{{ space.id }}" />
-      <input type="date" pattern="\d{4}-\d{2}-\d{2}" name="date" id="date" />
+      <input required type="date" pattern="\d{4}-\d{2}-\d{2}" name="date" id="date" />
       <input type="submit" value="Request to Book" class="button" />
     </form>
   </body>

@@ -21,7 +21,7 @@
     <form action="/space" method="POST">
       <label>Name:</label>
       <br />
-      <input type="text" name="space_name" id="name" />
+      <input required type="text" name="space_name" id="name" />
       <br />
       <br />
       <label>Description:</label>
@@ -36,12 +36,12 @@
       <br />
 
       <label>Price per night(£):</label>
-      <input type="text" name="price" id="price" />
+      <input required type="text" name="price" id="price" />
       <br />
       <br />
       <br />
       <label>Available from:</label>
-      <input
+      <input required
         type="date"
         pattern="\d{4}-\d{2}-\d{2}"
         name="available_from"
@@ -51,7 +51,7 @@
       <br />
       <br />
       <label>Available to:</label>
-      <input
+      <input required
         type="date"
         pattern="\d{4}-\d{2}-\d{2}"
         name="available_to"

@@ -14,7 +14,7 @@
     {% for space in user.spaces %}
     <div class="list_of_spaces">
       <h3>
-        <a href="/user/{{ user.id }}">
+        <a href="/user">
             {{ space.name }} {{ space.description }} {{space.price}}
         </a>
       </h3>
@@ -25,7 +25,7 @@
     {% for booking in user.bookings %}
     <div class="list_of_bookings">
       <h3>
-        <a href="/user/{{ user.id }}">
+        <a href="/user">
             {{ booking.booking_date }} {{ booking.booked_by }} {{booking.space_id}}
         </a>
       </h3>
