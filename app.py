@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, redirect, session
+from flask import Flask, request, render_template, redirect, session, flash
 from lib.database_connection import get_flask_database_connection
 
 from lib.space import Space
@@ -104,6 +104,11 @@ def post_user():
     repository = UserRepository(connection)
     email = request.form['email']
     password = request.form['password']
+    user = repository.find_by_email(email)
+    if user is not None:
+        flash('Email already exists please click Login', category='error')
+        return redirect('/')
+
     user = User(None, email, password)
     repository.create(user)
 
