@@ -17,7 +17,7 @@
     {% for booking in bookings %}
     <div class="list_of_bookings">
       <h3>
-        <a href="/bookings/{{ booking.id }}"
+        <a class="link" href="/bookings/{{ booking.id }}"
           >{{ booking.booking_date }} {{ booking.booked_by }} {{booking.space_id}}</a
         >
       </h3>
