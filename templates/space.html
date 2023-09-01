@@ -2,23 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/static/style.css" />
 
+    <link rel="stylesheet" href="/static/style.css" >
+
+  
     <title>List a Space | MakerBnB</title>
   </head>
 
   <body>
-    <img src="/static/img/logo2.png" alt="logo" width="100" height="40" />
+    <img src="/static/img/logo2.png" alt="logo" width="250" />
     <div class="nav">
       <a href="/spaces" class="button">Spaces</a>
-      <a href="/requests" class="button">Requests</a>
+      <a href="/bookings" class="button">Requests</a>
       <a href="/logout" class="button">Log out</a>
     </div>
     <h1>List a Space</h1>
-
+    <br />
     <form action="/space" method="POST">
       <label>Name:</label>
+      <br />
       <input type="text" name="space_name" id="name" />
+      <br />
       <br />
       <label>Description:</label>
       <br />
@@ -29,9 +33,12 @@
         cols="40"
       ></textarea>
       <br />
+      <br />
 
       <label>Price per night(£):</label>
       <input type="text" name="price" id="price" />
+      <br />
+      <br />
       <br />
       <label>Available from:</label>
       <input
@@ -41,6 +48,8 @@
         id="available_from"
       />
       <br />
+      <br />
+      <br />
       <label>Available to:</label>
       <input
         type="date"
@@ -49,12 +58,12 @@
         id="available_to"
       />
 
-      <label>User ID</label>
-      <input type="text" name="user_id" id="user_id" />
+      <!-- <label>User ID</label>
+      <input type="text" name="user_id" id="user_id" /> -->
 
       <br />
 
-      <p><input type="submit" value="List My Space" class="button" /></p>
+      <p><input type="submit" value="List My Space" class="btn" /></p>
     </form>
   </body>
 </html>

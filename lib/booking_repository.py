@@ -18,7 +18,7 @@ class BookingRepository:
         bookings = []
         for row in rows:
             item = Booking(row['id'], row['booking_date'],
-                           row['confirmed'], row['booked_by'], row['space_id'])
+                           row['booked_by'], row['space_id'])
             bookings.append(item)
         return bookings
 
@@ -28,7 +28,7 @@ class BookingRepository:
             [id]
         )
         row = rows[0]
-        return Booking(row['id'], row['booking_date'], row['confirmed'], row['booked_by'], row['space_id'])
+        return Booking(row['id'], row['booking_date'], row['booked_by'], row['space_id'])
 
     def delete(self, id):
         self._connection.execute(
