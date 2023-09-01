@@ -1,32 +1,39 @@
 @font-face {
-    font-family: TwitterChirp;
-    src: url(https://abs.twimg.com/fonts/v2/chirp-regular-web.woff2) format('woff2');
-    src: url(https://abs.twimg.com/fonts/v2/chirp-regular-web.woff) format('woff');
-    font-weight: 400;
-    font-style: 'normal';
-    font-display: 'swap';
-  }
-  @font-face {
-    font-family: TwitterChirpExtendedHeavy;
-    src: url(https://abs.twimg.com/fonts/v1/chirp-extended-heavy-web.woff2) format('woff2');
-    src: url(https://abs.twimg.com/fonts/v1/chirp-extended-heavy-web.woff) format('woff');
-    font-weight: 800;
-    font-style: 'normal';
-    font-display: 'swap';
-  }
+  font-family: TwitterChirp;
+  src: url(https://abs.twimg.com/fonts/v2/chirp-regular-web.woff2)
+    format("woff2");
+  src: url(https://abs.twimg.com/fonts/v2/chirp-regular-web.woff) format("woff");
+  font-weight: 400;
+  font-style: "normal";
+  font-display: "swap";
+}
+@font-face {
+  font-family: TwitterChirpExtendedHeavy;
+  src: url(https://abs.twimg.com/fonts/v1/chirp-extended-heavy-web.woff2)
+    format("woff2");
+  src: url(https://abs.twimg.com/fonts/v1/chirp-extended-heavy-web.woff)
+    format("woff");
+  font-weight: 800;
+  font-style: "normal";
+  font-display: "swap";
+}
 
 a {
- text-decoration: none;
+  text-decoration: none;
+}
+
+h1 {
+  font-family: TwitterChirpExtendedHeavy;
 }
 
 body {
-    background-color: #FEFBEA;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    font-family: TwitterChirp;
-    color: #FF5A5F;
-    }
+  background-color: #fefbea;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  font-family: TwitterChirp;
+  color: #ff5a5f;
+}
 
 .button {
   -webkit-border-radius: 16;
@@ -35,58 +42,71 @@ body {
   font-family: Arial;
   color: #ffffff;
   font-size: 20px;
-  background: #FF5A5F;
+  background: #ff5a5f;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 }
 
 .nav {
-      margin-left: auto;
-      padding: 60px;
-      font-weight: 1.5rem;
-  }
+  margin-left: auto;
+  padding: 60px;
+  font-weight: 1.5rem;
+}
 
-.main-box{
-
-  background-color: #F5F5F5;
+.main-box {
+  background-color: #f5f5f5;
   text-align: center;
-  position: absolute; 
+  position: absolute;
   top: 30%;
   border: solid;
   border-radius: 10px;
   padding: 20px;
-
 }
 
-.nav{
-
+.nav {
   font-family: TwitterChirpExtendedHeavy;
-
 }
 
 .btn {
-    
-    -webkit-border-radius: 16;
-    -moz-border-radius: 16;
-    border-radius: 16px;
-    font-family: Arial;
-    color: #ffffff;
-    font-size: 20px;
-    background: #FF5A5F;
-    padding: 10px 20px 10px 20px;
-    text-decoration: none;
-  }
+  -webkit-border-radius: 16;
+  -moz-border-radius: 16;
+  border-radius: 16px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #ff5a5f;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
 
-  .link {
-    color: black;
-    font-family: TwitterChirp;
-  }
-  
-  .btn:hover {
-    background: #ffffff;
-    color: #FF5A5F;
-    text-decoration: none;
-  }
+.link {
+  color: black;
+  font-family: TwitterChirp;
+}
+
+.btn:hover {
+  background: #ffffff;
+  color: #ff5a5f;
+  text-decoration: none;
+}
+
+.list_of_spaces,
+.list_of_bookings {
+  border: solid #ff5a5f;
+  border-radius: 20px;
+  padding: 20px;
+  width: 400px;
+  margin: 20px;
+  background-color: #f5f5f5;
+}
+
+.signin_box {
+  border: solid #ff5a5f;
+  border-radius: 20px;
+  padding: 20px;
+  width: 400px;
+  margin: 20px;
+  background-color: #f5f5f5;
 
   .list_of_spaces, .list_of_bookings {
     border: solid #FF5A5F;
@@ -101,3 +121,10 @@ body {
     width: 150px;
     height: 150px;
   }
+
+  /* Add these styles to center items */
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+}

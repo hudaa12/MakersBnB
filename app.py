@@ -114,12 +114,15 @@ def post_user():
 def get_about():
     return render_template('about.html')
 
-@app.route('/user/<int:id>')
-def get_user_details(id):
+
+@app.route('/user')
+def get_user_details():
     connection = get_flask_database_connection(app)
     repository = UserRepository(connection)
-    user = repository.find_with_spaces_and_bookings(id)
+    session_id = session['user_id']
+    user = repository.find_with_spaces_and_bookings(session_id)
     return render_template('user.html', user=user)
+
 
 @app.route('/request_to_book', methods=['POST'])
 def create_booking():
