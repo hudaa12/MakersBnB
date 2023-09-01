@@ -23,8 +23,8 @@ class UserRepository:
             'FROM users JOIN spaces ON users.id = spaces.user_id WHERE users.id = %s', [user_id])
         spaces = []
         for row in rows:
-            spaces.append(Space(row['space_id'], row['space_name'], row['description'], row['price'], row['avail_from'], row['avail_to'], row['user_id']))
-        
+            space = Space(row['space_id'], row['space_name'], row['description'], row['price'], row['avail_from'], row['avail_to'], row['user_id'])
+            spaces.append(space)
         rows = self._connection.execute(
             'SELECT users.id, users.email, users.password, ' \
             'bookings.id AS booking_id, bookings.booking_date, bookings.confirmed, bookings.booked_by, bookings.space_id ' \
@@ -32,9 +32,9 @@ class UserRepository:
         bookings = []
         for row in rows:
             bookings.append(Booking(row['booking_id'], row['booking_date'], row['confirmed'], row['booked_by'], row['space_id']))
-        print(User(row['id'], row['email'], row['password'], spaces, bookings))
 
-        # return User(row['id'], row['email'], row['password'], spaces, bookings)
+        return User(row['id'], row['email'], row['password'], spaces, bookings)
+        
 
     def create(self, user):
         rows = self._connection.execute( 'INSERT INTO users (email, password) VALUES (%s, %s) RETURNING id', 

@@ -7,7 +7,7 @@ class BookingRepository:
 
     def create_booking(self, booking):
         rows = self._connection.execute(
-            'INSERT INTO bookings (booking_date, booked_by, space_id) VALUES (%s, %s, %s, %s) RETURNING id', [booking.booking_date, booking.booked_by, booking.space_id])
+            'INSERT INTO bookings (booking_date, booked_by, space_id) VALUES (%s, %s, %s) RETURNING id', [booking.booking_date, booking.booked_by, booking.space_id])
         booking.id = rows[0]['id']
         return None
 

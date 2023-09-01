@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MakersBnB</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  <body>
+    <div class="nav">
+      <a href="/spaces" class="button">Spaces</a>
+      <a href="/requests" class="button">Requests</a>
+      <a href="/signout" class="button">Sign out</a>
+    </div>
+    <h1>User Page</h1>
+    <h2>User Spaces</h2>
+    {% for space in user.spaces %}
+    <div class="list_of_spaces">
+      <h3>
+        <a href="/user/{{ user.id }}">
+            {{ space.name }} {{ space.description }} {{space.price}}
+        </a>
+      </h3>
+    </div>
+    {% endfor %}
+
+    <h2>User Bookings</h2>
+    {% for booking in user.bookings %}
+    <div class="list_of_bookings">
+      <h3>
+        <a href="/user/{{ user.id }}">
+            {{ booking.booking_date }} {{ booking.booked_by }} {{booking.space_id}}
+        </a>
+      </h3>
+    </div>
+    {% endfor %}
+  </body>
+</html>
