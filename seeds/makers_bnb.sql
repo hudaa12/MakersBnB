@@ -39,7 +39,6 @@ CREATE SEQUENCE IF NOT EXISTS bookings_id_seq;
 CREATE TABLE bookings (
   id SERIAL PRIMARY KEY,
   booking_date date,
-  confirmed boolean,
   booked_by int,
   space_id int,
   constraint fk_booked_by foreign key(booked_by) references users(id) on delete cascade,
@@ -59,6 +58,6 @@ INSERT INTO spaces (name, description, price, avail_from, avail_to, user_id) VAL
 INSERT INTO spaces (name, description, price, avail_from, avail_to, user_id) VALUES ('House_3', 'nice garden', 350.00, '2023/06/01', '2023/11/01', 3);
 
 
-INSERT INTO bookings (booking_date, confirmed, booked_by, space_id) VALUES ('2023/7/10', True, 3, 1);
-INSERT INTO bookings (booking_date, confirmed, booked_by, space_id) VALUES ('2023/8/15', True, 2, 2);
-INSERT INTO bookings (booking_date, confirmed, booked_by, space_id) VALUES ('2023/9/20', True, 1, 3);
+INSERT INTO bookings (booking_date, booked_by, space_id) VALUES ('2023/7/10', 3, 1);
+INSERT INTO bookings (booking_date, booked_by, space_id) VALUES ('2023/8/15', 2, 2);
+INSERT INTO bookings (booking_date, booked_by, space_id) VALUES ('2023/9/20', 1, 3);
