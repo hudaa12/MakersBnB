@@ -3,17 +3,6 @@ In this group project, we were tasked with designing and integrating a SQL datab
 
 MakersBnB is an AirBnB replica web application where you can register as a user, log-in as a user, and find and book accomodation or offer accomodation to be booked.
 
-Our Team
-Ami Day
-[]
-[]
-[]
-[]
-[]
-Tech stack
-Frontend:   
-
-Backend:  
 
 ```shell
 # Install dependencies and set up the virtual environment
