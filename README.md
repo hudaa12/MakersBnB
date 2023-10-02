@@ -1,12 +1,19 @@
-# MakersBnB Project Seed
+MakersBnB
+In this group project, we were tasked with designing and integrating a SQL database in Python to create a web application called MakersBnB within 4 days.
 
-This repo contains the seed codebase for the MakersBnB project in Python (using 
-Flask and Pytest).
+MakersBnB is an AirBnB replica web application where you can register as a user, log-in as a user, and find and book accomodation or offer accomodation to be booked.
 
-Someone in your team should fork this seed repo to their Github account. 
-Everyone in the team should then clone this fork to their local machine to work on it.
+Our Team
+Ami Day
+[]
+[]
+[]
+[]
+[]
+Tech stack
+Frontend:   
 
-## Setup
+Backend:  
 
 ```shell
 # Install dependencies and set up the virtual environment
